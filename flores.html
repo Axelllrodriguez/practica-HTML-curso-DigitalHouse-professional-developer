@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas 🌼</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to top, #fffde7, #fff8e1);
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        /* Ramo */
+        .ramo {
+            display: flex;
+            gap: 40px;
+            z-index: 10;
+            animation: aparecer 2s ease-out;
+        }
+
+        .flor {
+            width: 120px;
+            height: auto;
+            animation: balanceo 4s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        /* Mensaje */
+        .mensaje {
+            margin-top: 40px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #444;
+            text-align: center;
+            z-index: 10;
+            animation: subir 3s ease-out;
+        }
+
+        /* Animaciones */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes balanceo {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(4deg);
+            }
+        }
+
+        @keyframes subir {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pétalos */
+        .petalo {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle at center, #ffd54f, #ffb300);
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: caer linear infinite;
+        }
+
+        @keyframes caer {
+            0% {
+                transform: translateY(-50px) rotate(0deg) scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ramo">
+        <!-- Flor 1 -->
+        <div class="flor">
+            <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                <rect x="95" y="150" width="10" height="240" fill="green" />
+                <circle cx="100" cy="100" r="45" fill="gold" />
+                <circle cx="60" cy="100" r="45" fill="gold" />
+                <circle cx="140" cy="100" r="45" fill="gold" />
+                <circle cx="100" cy="60" r="45" fill="gold" />
+                <circle cx="100" cy="140" r="45" fill="gold" />
+                <circle cx="100" cy="100" r="30" fill="saddlebrown" />
+            </svg>
+        </div>
+        <!-- Flor 2 -->
+        <div class="flor">
+            <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                <rect x="95" y="150" width="10" height="240" fill="darkgreen" />
+                <circle cx="100" cy="100" r="45" fill="gold" />
+                <circle cx="60" cy="100" r="45" fill="gold" />
+                <circle cx="140" cy="100" r="45" fill="gold" />
+                <circle cx="100" cy="60" r="45" fill="gold" />
+                <circle cx="100" cy="140" r="45" fill="gold" />
+                <circle cx="100" cy="100" r="30" fill="saddlebrown" />
+            </svg>
+        </div>
+        <!-- Flor 3 -->
+        <div class="flor">
+            <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                <rect x="95" y="150" width="10" height="240" fill="green" />
+                <circle cx="100" cy="100" r="45" fill="gold" />
+                <circle cx="60" cy="100" r="45" fill="gold" />
+                <circle cx="140" cy="100" r="45" fill="gold" />
+                <circle cx="100" cy="60" r="45" fill="gold" />
+                <circle cx="100" cy="140" r="45" fill="gold" />
+                <circle cx="100" cy="100" r="30" fill="saddlebrown" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="mensaje">
+        🌼 Feliz Primavera, mi amor 💛<br>
+        Te regalo este ramo de flores amarillas, perdon por el atraso xD 🌼
+    </div>
+
+    <script>
+        // Generar pétalos cayendo
+        function crearPetalo() {
+            const petalo = document.createElement("div");
+            petalo.classList.add("petalo");
+            petalo.style.left = Math.random() * 100 + "vw";
+            petalo.style.animationDuration = (5 + Math.random() * 5) + "s";
+            petalo.style.transform = `scale(${0.5 + Math.random() * 0.8})`;
+            document.body.appendChild(petalo);
+
+            petalo.addEventListener("animationend", () => {
+                petalo.remove();
+            });
+        }
+
+        // Crear pétalos al inicio y cada intervalo
+        setInterval(crearPetalo, 400);
+    </script>
+</body>
+
+</html>
